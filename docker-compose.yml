@@ -4,11 +4,11 @@ services:
 
   mongodb:
     build: 
-      context: ./LearnStudio-Database
+      context: ./Learn-Database
       dockerfile: Dockerfile
     container_name: mongodb
     volumes:
-      - ./LearnStudio-Database/data:/data/db
+      - ./Learn-Database/data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: node_user
       MONGO_INITDB_ROOT_PASSWORD: learn123
@@ -30,7 +30,7 @@ services:
 
   node:
     build: 
-      context: ./LearnStudio-Back/learn-studio-api
+      context: ./Learn-Back/learn-studio-api
       dockerfile: Dockerfile.dev
     container_name: node
     depends_on:
@@ -43,11 +43,11 @@ services:
       PORT: 3000
       JWT_KEY: YOLO
     volumes:
-      - ./LearnStudio-Back/learn-studio-api:/app
+      - ./Learn-Back/learn-studio-api:/app
 
   angular:
     build:
-      context: ./LearnStudio-Front/learnstudio
+      context: ./Learn-Front/learnstudio
       dockerfile: Dockerfile.dev
     container_name: angular
     depends_on:
@@ -59,7 +59,7 @@ services:
         BACKEND_INTERNAL_HOST: 'http://node:3000'
         BACKEND_EXTERNAL_HOST: 'http://learn-studio-api.test:8181'
     volumes: 
-      - ./LearnStudio-Front/learnstudio:/home/node/app
+      - ./Learn-Front/learnstudio:/home/node/app
 
   nginx:
     build:

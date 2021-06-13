@@ -17,16 +17,16 @@ Learn-Compose
 │   ├── certs
 │   └── conf
 ├── Learn-Database
-├── LearnStudio-Back
-└── LearnStudio-Front
+├── Learn-Back
+└── Learn-Front
 ```
 
 ```bash
-git clone https://github.com/Gin-sen/Learn-Compose.git
+git clone https://github.com/learn-studio/Learn-Compose.git
 cd Learn-Compose
-git clone https://github.com/Gin-sen/Learn-Database.git
-git clone https://github.com/Gin-sen/LearnStudio-Back.git
-git clone https://github.com/Gin-sen/LearnStudio-Front.git
+git clone https://github.com/learn-studio/Learn-Database.git
+git clone https://github.com/learn-studio/Learn-Back.git
+git clone https://github.com/learn-studio/Learn-Front.git
 ```
 
 
@@ -143,4 +143,4 @@ TODO: Explain how other users and developers can contribute to make your code be
 
 Ce dépot prends en compte les changement pour les fichiers autres que les dépots clonés.
 
-Pour changer de branche dans le back avec votre IDE, ouvrez le projet `LearnStudio-Back` comme un projet indépendant pour que l'IDE prenne le .git de ce projet. (ex: `code LearnStudio-Back` puis changer de branche, faire une modif, commit, ...).
+Pour changer de branche dans le back avec votre IDE, ouvrez le projet `Learn-Back` comme un projet indépendant pour que l'IDE prenne le .git de ce projet. (ex: `code Learn-Back` puis changer de branche, faire une modif, commit, ...).
