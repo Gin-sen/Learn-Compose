@@ -1,0 +1,32 @@
+# Suivis techniques 
+
+## Suivi 1 : 
+
+Ajouter un schéma client - service - DB
+Quelle architecture logiciel on veut utiliser ? 
+Contruire un micro service splité, le code doit être écrit correctement 
+Prérequis : 5 : autonomie, etc -> chercher
+2 écoles : DB & services (pas bien) | chaque service à sa DB (bonne pratique) 
+Question de modification et liens entre services
+Banded context à voir
+Architecture hexagonale ou en oignon
+Attention à ne pas avoir les pb des microservices sans les avantages
+
+Comment faire passer les exercices sur le site ?
+La technique répond à la problématique
+
+Faire le login, puis faire directement les exercices
+
+
+## Suivi 2 : 
+
+Pour la prochaine fois : 
+1 demo sur le site de la résolution d'un exercice 
+parcours d'inscription d'un utilisateur
+Démo du form de personnalité
+
+On est en retard, on a pris un grand projet, gros sans être gros, noté correctement si les exercices ont été bien étudiées sont implémentés correctement 
+La soutenance finale : on doit présenter le thème, les sources, etc à partir duquel on a construit les exercices, + démo du site. 
+Question du partenaire associatif : gagner des points s'il participent aux tests. 
+On doit travailler sur les features.  
+C'est bien pour les recherches.
