@@ -21,12 +21,16 @@ Learn-Compose
 └── Learn-Front
 ```
 
+Via clé ssh : 
+
 ```bash
-git clone https://github.com/learn-studio/Learn-Compose.git
-cd Learn-Compose
-git clone https://github.com/learn-studio/Learn-Database.git
-git clone https://github.com/learn-studio/Learn-Back.git
-git clone https://github.com/learn-studio/Learn-Front.git
+git clone git@github.com:learn-studio/Learn-Compose.git && cd Learn-Compose && git clone git@github.com:learn-studio/Learn-Database.git && git clone git@github.com:learn-studio/Learn-Back.git && git clone git@github.com:learn-studio/Learn-Front.git
+```
+
+Via https :
+
+```bash
+git clone https://github.com/learn-studio/Learn-Compose.git && cd Learn-Compose && git clone https://github.com/learn-studio/Learn-Database.git && git clone https://github.com/learn-studio/Learn-Back.git && git clone https://github.com/learn-studio/Learn-Front.git
 ```
 
 
@@ -61,7 +65,7 @@ Pour ouvrir NotePad++ et faire ça en powershell (powershell à ouvrir en mode a
 Start notepad++ C:\Windows\System32\drivers\etc\hosts
 ```
 # Lancer le projet
-
+<!-->
 ## Mode "prod"
 
 Lancer le projet dans ce mode correspond à lancer tout l'infra de manière isolé, . Les containers copient le code/fichiers de conf et n'ont plus d'interraction avec l'hôte. Les modifications seront présentes en re-buildant les images docker.
@@ -80,18 +84,24 @@ Toutes les applications devraient tourner et le nginx reverse proxy devrais serv
 - Backtend : `http://learn-studio-api.test:8181`
 
 TODO: faire une conf nginx pour la redirection d'erreur pour le front (prod uniquement, marche en dev) acr en mode prod, le container angular est just un nginx
-
+<!-->
 ## Mode "dev"
 
 Dans ce mode "plus interactif", vos fichiers de code seront directement partagés avec les containers.
 
 Les dépendances des packages sont installées à chaque build, si vous décidez d'ajouter un package, relancez un build.
 
+<!-->
+
 Les packages du projet `LearnStudio-Back` (api nodejs/express) sont OBLIGATOIRES (voir Troubleshooting) en mode dev, les autres sont optionnels.
+
+<!-->
 
 Votre IDE aura besoin des packages de vos projets donc n'hésitez pas à installer les packages pour dev dans les dossiers appropriés :
 - Pour installer les packages déjà requis pour faire fonctionnrer le projet, utilisez `npm install --save`.
 - Pour installer de nouveaux packages, utilisez `npm install --save <package>`.
+
+
 
 Lancer le mode dev : `docker-compose up --build` dans le projet `Learn-Compose`.
 
@@ -104,7 +114,7 @@ Toutes les applications devraient tourner et le nginx reverse proxy devrais serv
 
 Les tests de chaque service seront décris dans les README.md appropriés.
 
-
+<!-->
 # Troubleshooting
 
 Problèmes déjà connus : 
@@ -126,7 +136,7 @@ node_1      |     at Function.Module._resolveFilename (node:internal/modules/cjs
 ...
 ```
 
-Problème rencontré quand on lance le mode dev sans avoir installé les node_modules
+Problème rencontré quand on lance node sans créer de 
 
 
 Fix : dans le dossier `./LearnStudio-Back/learn-studio-api` :
@@ -135,7 +145,7 @@ Fix : dans le dossier `./LearnStudio-Back/learn-studio-api` :
 - Lancer la commande `npm install`
 
 Vous devriez pouvoir lancer le `docker-compose up --build`. Dans le cas contraire, créez une issue dans les Work Items DevOps avec un maximum d'information pour le DevOps.
-
+<!-->
 # Contribute
 TODO: Explain how other users and developers can contribute to make your code better. 
 
@@ -143,4 +153,4 @@ TODO: Explain how other users and developers can contribute to make your code be
 
 Ce dépot prends en compte les changement pour les fichiers autres que les dépots clonés.
 
-Pour changer de branche dans le back avec votre IDE, ouvrez le projet `Learn-Back` comme un projet indépendant pour que l'IDE prenne le .git de ce projet. (ex: `code Learn-Back` puis changer de branche, faire une modif, commit, ...).
+Pour changer de branche dans le back avec votre IDE, ouvrez le projet `Learn-Back` comme un projet indépendant pour que l'IDE prenne le .git de ce projet. (ex: `code Learn-Back` puis changer de branche, faire une modif, commit, ...) ou utilisez les commandes git.
