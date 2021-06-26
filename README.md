@@ -65,9 +65,35 @@ Pour ouvrir NotePad++ et faire ça en powershell (powershell à ouvrir en mode a
 Start notepad++ C:\Windows\System32\drivers\etc\hosts
 ```
 # Lancer le projet
-<!-->
-## Mode "prod"
 
+
+## Mode "dev"
+
+Dans ce mode "plus interactif", vos fichiers de code seront directement partagés avec les containers.
+
+Les dépendances des packages sont installées à chaque build, si vous décidez d'ajouter un package, relancez un build.
+
+<!-->
+Les packages du projet `LearnStudio-Back` (api nodejs/express) sont OBLIGATOIRES (voir Troubleshooting) en mode dev, les autres sont optionnels.
+<!-->
+
+Votre IDE aura besoin des packages de vos projets donc n'hésitez pas à installer les packages pour dev dans les dossiers appropriés :
+- Pour installer les packages déjà requis pour faire fonctionnrer le projet, utilisez `npm install --save`.
+- Pour installer de nouveaux packages, utilisez `npm install --save <package>`.
+
+
+
+Lancer le mode dev : `docker-compose up --build` dans le projet `Learn-Compose`.
+
+Toutes les applications devraient tourner et le nginx reverse proxy devrais servir les containers sur ces urls :
+
+- Frontend : `http://learn-studio.test:8181`
+- Backtend : `http://learn-studio-api.test:8181`
+
+
+
+<details>
+  <summary>Mode "prod" (obsolète)</summary>
 Lancer le projet dans ce mode correspond à lancer tout l'infra de manière isolé, . Les containers copient le code/fichiers de conf et n'ont plus d'interraction avec l'hôte. Les modifications seront présentes en re-buildant les images docker.
 
 Il est important de noter que vous n'avez pas impérativement besoin d'installer les packages des projets pour lancer ce mode, les containers sont autonomes vis-à-vis de ça. (voir différences entre les volumes des deux fichiers `docker-compose*.yml` + Dockerfiles respectives + .dockerignore respectifs)
@@ -84,37 +110,15 @@ Toutes les applications devraient tourner et le nginx reverse proxy devrais serv
 - Backtend : `http://learn-studio-api.test:8181`
 
 TODO: faire une conf nginx pour la redirection d'erreur pour le front (prod uniquement, marche en dev) acr en mode prod, le container angular est just un nginx
-<!-->
-## Mode "dev"
+</details>
 
-Dans ce mode "plus interactif", vos fichiers de code seront directement partagés avec les containers.
-
-Les dépendances des packages sont installées à chaque build, si vous décidez d'ajouter un package, relancez un build.
-
-<!-->
-
-Les packages du projet `LearnStudio-Back` (api nodejs/express) sont OBLIGATOIRES (voir Troubleshooting) en mode dev, les autres sont optionnels.
-
-<!-->
-
-Votre IDE aura besoin des packages de vos projets donc n'hésitez pas à installer les packages pour dev dans les dossiers appropriés :
-- Pour installer les packages déjà requis pour faire fonctionnrer le projet, utilisez `npm install --save`.
-- Pour installer de nouveaux packages, utilisez `npm install --save <package>`.
-
-
-
-Lancer le mode dev : `docker-compose up --build` dans le projet `Learn-Compose`.
-
-Toutes les applications devraient tourner et le nginx reverse proxy devrais servir les containers sur ces urls :
-
-- Frontend : `http://learn-studio.test:8181`
-- Backtend : `http://learn-studio-api.test:8181`
 
 # Test
 
 Les tests de chaque service seront décris dans les README.md appropriés.
 
-<!-->
+<details>
+  <summary>Troubleshooting (obsolète)</summary>
 # Troubleshooting
 
 Problèmes déjà connus : 
@@ -145,7 +149,7 @@ Fix : dans le dossier `./LearnStudio-Back/learn-studio-api` :
 - Lancer la commande `npm install`
 
 Vous devriez pouvoir lancer le `docker-compose up --build`. Dans le cas contraire, créez une issue dans les Work Items DevOps avec un maximum d'information pour le DevOps.
-<!-->
+</details>
 # Contribute
 TODO: Explain how other users and developers can contribute to make your code better. 
 
