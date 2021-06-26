@@ -44,7 +44,7 @@ services:
       JWT_KEY: YOLO
     volumes:
       - ./Learn-Back/learn-studio-api:/app
-      - exclude:/app/node_modules
+      - api-node-modules:/app/node_modules
 
   angular:
     build:
@@ -60,7 +60,8 @@ services:
         BACKEND_INTERNAL_HOST: 'http://node:3000'
         BACKEND_EXTERNAL_HOST: 'http://learn-studio-api.test:8181'
     volumes: 
-      - ./Learn-Front/learnstudio:/home/node/app
+      - ./Learn-Front/learnstudio:/app
+      - front-node-modules:/app/node_modules
 
   nginx:
     build:
@@ -78,5 +79,6 @@ services:
 
 
 volumes:
-  exclude:
+  front-node-modules:
+  api-node-modules:
   data:
