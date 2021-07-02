@@ -10,6 +10,7 @@ services:
     volumes:
       - ./Learn-Database/data:/data/db
       - ./Learn-Database/fixtures:/data/fixtures
+
     environment:
       MONGO_INITDB_ROOT_USERNAME: node_user
       MONGO_INITDB_ROOT_PASSWORD: learn123
