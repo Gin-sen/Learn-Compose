@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   mongo:
-    build: 
+    build:
       context: ./Learn-Database
       dockerfile: Dockerfile
     container_name: mongo
@@ -14,14 +14,14 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: learn123
       MONGO_INITDB_DATABASE: learn_db
     ports:
-     - 27017
+      - 27017
     restart: on-failure
 
   mongo-express:
     image: mongo-express:0.54
-    depends_on: 
+    depends_on:
       - mongo
-    ports: 
+    ports:
       - "8484:8081"
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: node_user
@@ -29,7 +29,7 @@ services:
     restart: always
 
   node:
-    build: 
+    build:
       context: ./Learn-Back/learn-studio-api
       dockerfile: Dockerfile.dev
     container_name: node
@@ -57,9 +57,10 @@ services:
     ports:
       - 80
     environment:
-        BACKEND_INTERNAL_HOST: 'http://node:3000'
-        BACKEND_EXTERNAL_HOST: 'http://learn-studio-api.test:8181'
-    volumes: 
+      BACKEND_INTERNAL_HOST: 'http://node:3000'
+      BACKEND_EXTERNAL_HOST: 'http://learn-studio-api.test:8181'
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
       - ./Learn-Front/learnstudio:/app
       - front-node-modules:/app/node_modules
 
