@@ -15,7 +15,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: learn123
       MONGO_INITDB_DATABASE: learn_db
     ports:
-      - "27017:27017"
+      - 27017:27017
     restart: on-failure
 
   mongo-express:
@@ -60,6 +60,7 @@ services:
     environment:
       BACKEND_INTERNAL_HOST: 'http://node:3000'
       BACKEND_EXTERNAL_HOST: 'http://learn-studio-api.test:8181'
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       - ./Learn-Front/learnstudio:/home/node/app
 
