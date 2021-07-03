@@ -8,13 +8,14 @@ services:
       dockerfile: Dockerfile
     container_name: mongo
     volumes:
-      - data:/data/db
+      - ./Learn-Database/data:/data/db
+      - ./Learn-Database/fixtures:/data/fixtures
     environment:
       MONGO_INITDB_ROOT_USERNAME: node_user
       MONGO_INITDB_ROOT_PASSWORD: learn123
       MONGO_INITDB_DATABASE: learn_db
     ports:
-      - 27017
+      - 27017:27017
     restart: on-failure
 
   mongo-express:
@@ -39,7 +40,7 @@ services:
     ports:
       - 3000
     environment:
-      MONGODB_URL: mongodb://node_user:learn123@mongo:27017 #?authSource=admin&readPreference=primary&ssl=false
+      MONGODB_URL: mongodb://node_user:learn123@mongo:27017/learn_db?authSource=admin&readPreference=primary&ssl=false
       PORT: 3000
       JWT_KEY: YOLO
     volumes:
