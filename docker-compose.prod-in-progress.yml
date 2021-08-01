@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+
+  mongo:
+    container_name: mongo
+    build:
+      context: ./Learn-Database
+      dockerfile: Dockerfile
+    ports: 
+      - 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: node_user
+      MONGO_INITDB_ROOT_PASSWORD: learn123
+      MONGO_INITDB_DATABASE: learn_db
+    networks:
+      - internal-net
+
+  node:
+    build:
+      context: ./Learn-Back/learn-studio-api
+      dockerfile: Dockerfile.prod
+    container_name: node
+    depends_on: 
+      - mongo
+    environment:
+      MONGODB_URL: mongodb://node_user:learn123@mongo:27017/learn_db?authSource=admin&readPreference=primary&ssl=false
+      PORT: 3000
+      JWT_KEY: YOLO
+    networks:
+      - internal-net
+
+  angular:
+    build:
+      context: ./Learn-Front/learn-studio-front
+      dockerfile: Dockerfile.prod
+    container_name: angular
+    depends_on:
+      - node
+    environment: 
+      BACKEND_INTERNAL_URL: http://node:3000
+    ports: 
+      - 8080:80
+    networks:
+      - internal-net
+      - public-net
+
+  mongo-express:
+    container_name: mongo-dashboard
+    image: mongo-express:0.54
+    depends_on:
+      - mongo
+    ports: 
+      - 9000:9000
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: node_user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: learn123
+      ME_CONFIG_MONGODB_SERVER: mongo
+    networks:
+      - internal-net
+
+networks: 
+  public-net:
+  internal-net:
