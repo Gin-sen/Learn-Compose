@@ -3,6 +3,7 @@ version: "3.8"
 services:
 
   mongo:
+    container_name: mongo
     build:
       context: ./Learn-Database
       dockerfile: Dockerfile
@@ -19,6 +20,7 @@ services:
     build:
       context: ./Learn-Back/learn-studio-api
       dockerfile: Dockerfile.prod
+    container_name: node
     depends_on: 
       - mongo
     environment:
@@ -32,8 +34,8 @@ services:
     build:
       context: ./Learn-Front/learn-studio-front
       dockerfile: Dockerfile.prod
-    depends_on: 
-      - mongo
+    container_name: angular
+    depends_on:
       - node
     environment: 
       BACKEND_INTERNAL_URL: http://node:3000
@@ -44,6 +46,7 @@ services:
       - public-net
 
   mongo-express:
+    container_name: mongo-dashboard
     image: mongo-express:0.54
     depends_on:
       - mongo
