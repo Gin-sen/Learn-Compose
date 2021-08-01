@@ -36,7 +36,7 @@ git clone https://github.com/learn-studio/Learn-Compose.git && cd Learn-Compose 
 
 Remarque: **si vous utilisez WSL**, faites en sorte de cloner dans un dossier appartanant a votre hôte wsl (ex : `/home/user_x/pli`) et pas dans un dossier Windows (ex : `/mnt/c/users/user_x/pli`).
 
-## Générer les clés de dev auto-signées
+<!-- ## Générer les clés de dev auto-signées
 
 Dans le dossier `Learn-Compose`, entrer :
 
@@ -49,7 +49,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout learn-studio-ap
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout learn-studio.key -out learn-studio.crt # Pas besoin de rentrer quoi que ce soit 
 ```
 
-Sur Windows, je sais pas.
+Sur Windows, je sais pas. -->
 
 ## Modifier votre /etc/hosts
 
@@ -79,21 +79,19 @@ Les packages du projet `LearnStudio-Back` (api nodejs/express) sont OBLIGATOIRES
 
 Votre IDE aura besoin des packages de vos projets donc n'hésitez pas à installer les packages pour dev dans les dossiers appropriés :
 - Pour installer les packages déjà requis pour faire fonctionnrer le projet, utilisez `npm install --save`.
-- Pour installer de nouveaux packages, utilisez `npm install --save <package>`.
-
-
+- Pour installer de nouveaux packages, utilisez `npm install --save <package>` puis relancez la commande Docker-Compose.
 
 Lancer le mode dev : `docker-compose up --build` dans le projet `Learn-Compose`.
 
-Toutes les applications devraient tourner et le nginx reverse proxy devrais servir les containers sur ces urls :
+Vous retrouverez les applications sur ces urls :
 
-- Frontend : `http://learn-studio.test:8181`
-- Backtend : `http://learn-studio-api.test:8181`
-
-
+| Front-End Angular | `http://localhost:4200` |
+|:-----------------:|:-----------------------:|
+|  Back-End NodeJs  | `http://localhost:3000` |
+|  Mongo Dashboard  | `http://localhost:8484` |
 
 <details>
-  <summary>Mode "prod" (obsolète)</summary>
+  <summary>Mode "prod" (obsolète et rework en cours)</summary>
 Lancer le projet dans ce mode correspond à lancer tout l'infra de manière isolé, . Les containers copient le code/fichiers de conf et n'ont plus d'interraction avec l'hôte. Les modifications seront présentes en re-buildant les images docker.
 
 Il est important de noter que vous n'avez pas impérativement besoin d'installer les packages des projets pour lancer ce mode, les containers sont autonomes vis-à-vis de ça. (voir différences entre les volumes des deux fichiers `docker-compose*.yml` + Dockerfiles respectives + .dockerignore respectifs)
